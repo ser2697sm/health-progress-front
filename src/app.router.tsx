@@ -1,40 +1,40 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 //import { AuthLayout } from "./auth/layouts/AuthLayout";
-import { LoginPage } from "./auth/pages/login/LoginPage";
-import { RegisterPage } from "./auth/pages/register/RegisterPage";
-import { AuthLayout } from "./auth/layouts/AuthLayout";
-import { DatosPersonalesPage } from "./datosPersonales/pages/DatosPersonalesPage";
-import { Dashboard } from "./Dashboard/pages/DashBoard";
+import { LoginPage } from "./features/auth/pages/LoginPage";
+import { RegisterPage } from "./features/auth/pages/RegisterPage";
+import { PersonalDataPage } from "./features/personal-data/pages/PersonalDataPage";
+import { DashboardPage } from "./features/dashboard/pages/DashBoardPage";
+import { BodyRecordPage } from "./features/body-record/pages/BodyRecordPage";
+import AdminPanelPage from "./features/adminPanel/pages/AdminPage";
 
 export const appRouter = createBrowserRouter([
+
+    //Auth
     {
         path: '/',
-        element: <AuthLayout />,
-        children: [
-            {
-                index: true,
-                element: <Navigate to="/login" />
-            },
-            {
-                path: '/login',
-                element: <LoginPage />
+        element: <LoginPage />
+    },
+    {
+        path: '/admin',
+        element: <AdminPanelPage />
+    },
+    {
+        path: '/register',
+        element: <RegisterPage />
 
-            },
-            {
-                path: '/register',
-                element: <RegisterPage />
-
-            }
-        ]
+    },
+    {
+        path: '/bodyRecord',
+        element: <BodyRecordPage />
     },
     //Datos Personales
     {
         path: '/datosPersonales',
-        element: <DatosPersonalesPage />
+        element: <PersonalDataPage />
     },
     {
         path: '/home',
-        element: <Dashboard />
+        element: <DashboardPage />
     },
 
 ])

@@ -4,18 +4,17 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { registerDatosPersonalesAction } from "../actions/datosPersonales.action";
+import { registerDatosPersonalesAction } from "../actions/personal-data.action";
 import { useNavigate } from "react-router";
 
 
 type Inputs = {
     height: string;
-    weight: string;
     gender: boolean;
     age: number;
 };
 
-export const DatosPersonalesPage = () => {
+export const PersonalDataPage = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const {
@@ -27,12 +26,9 @@ export const DatosPersonalesPage = () => {
     const onSubmit: SubmitHandler<Inputs> = async (formData) => {
         try {
             setErrorMessage("");
-
-            const normalizedWeight = formData.weight.replace(",", ".");
             const normalizedHeight = formData.height.replace(",", ".");
 
             const response = await registerDatosPersonalesAction(
-                normalizedWeight,
                 normalizedHeight,
                 Number(formData.age),
                 formData.gender
@@ -40,7 +36,7 @@ export const DatosPersonalesPage = () => {
 
             // console.log("Respuesta API:", response);
 
-            navigate("/home");
+            navigate("/bodyRecord");
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message);
@@ -83,29 +79,6 @@ export const DatosPersonalesPage = () => {
                         />
                         {errors.height && (
                             <p className="text-red-500 text-sm">{errors.height.message}</p>
-                        )}
-                    </Field>
-
-                    <Field>
-                        <FieldLabel htmlFor="weight">Peso (kg)</FieldLabel>
-                        <Input
-                            id="weight"
-                            type="text"
-                            placeholder="75,3"
-                            onInput={(e) => {
-                                e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.,]/g, "");
-                            }}
-                            {...register("weight", {
-                                required: "El peso es obligatorio",
-                                validate: (value) =>
-                                    /^\d{1,3}([.,]\d{1})?$/.test(value) || "Formato válido: 75,3",
-                            })}
-                            className={cn({
-                                "border-red-500": errors.weight,
-                            })}
-                        />
-                        {errors.weight && (
-                            <p className="text-red-500 text-sm">{errors.weight.message}</p>
                         )}
                     </Field>
 

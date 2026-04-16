@@ -1,5 +1,5 @@
 import { healthProgressApi } from "@/api/healthProgressApi"
-import type { AuthResponse } from "../interface/auth.response"
+import type { AuthResponse } from "../types/login.response"
 import axios from "axios"
 
 export const loginAction = async (email: string, password: string): Promise<AuthResponse> => {

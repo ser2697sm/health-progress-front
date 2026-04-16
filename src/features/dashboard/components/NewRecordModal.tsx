@@ -3,7 +3,8 @@ import { DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/compo
 import { Dialog } from "@/components/ui/dialog"
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { registerDatosPersonalesAction } from "@/datosPersonales/actions/datosPersonales.action";
+import { registerDatosPersonalesAction } from "@/features/personal-data/actions/personal-data.action";
+
 import { cn } from "@/lib/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 export const NewRecordModal = () => {

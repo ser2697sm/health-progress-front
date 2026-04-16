@@ -1,5 +1,5 @@
 import { healthProgressApi } from "@/api/healthProgressApi"
-import type { DashboardResponse } from "../interfaces/Dasboard.response"
+import type { DashboardResponse } from "../types/dashboard.response"
 import axios from "axios"
 
 const getAuthHeaders = () => {

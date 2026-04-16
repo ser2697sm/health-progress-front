@@ -1,7 +1,7 @@
 import { healthProgressApi } from "@/api/healthProgressApi";
-import type { DatosPersonalesResponse } from "../interfaces/datosPersonales.response";
+import type { DatosPersonalesResponse } from "../types/datosPersonales.response";
 import axios from "axios";
-import type { DatosPersonalesResponseGet } from "../interfaces/datosPersonalesGet.response";
+import type { DatosPersonalesResponseGet } from "../types/datosPersonalesGet.response";
 
 const getAuthHeaders = () => {
     const token = localStorage.getItem("token");
@@ -13,10 +13,9 @@ const getAuthHeaders = () => {
     };
 };
 
-export const registerDatosPersonalesAction = async (weight: string, height: string, age: number, genger: Boolean): Promise<DatosPersonalesResponse> => {
+export const registerDatosPersonalesAction = async (height: string, age: number, genger: Boolean): Promise<DatosPersonalesResponse> => {
     try {
         const { data } = await healthProgressApi.post('/generalData/register', {
-            weight,
             height,
             age,
             genger
